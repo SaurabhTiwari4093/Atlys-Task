@@ -10,7 +10,7 @@ interface User {
 }
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   isModal?: Boolean;
   setModalType?: (modalType: string) => void;
   setShowModal?: (show: boolean) => void;
@@ -51,7 +51,7 @@ export default function Register({
     <div className="w-full max-w-[463px] rounded-[8px] p-[2px] bg-gradient-to-br from-[#969696] to-[#343434]">
       <div className="w-full h-full rounded-[6px] bg-[#27292D] px-[24px] py-[40px] flex flex-col items-center relative">
         {/* Comment: This childer is for closing of modal */}
-        {children}
+        {isModal && children}
         <div className="text-[#6B6C70] text-[14px] font-[500] leading-[16.94px]">
           SIGN UP
         </div>

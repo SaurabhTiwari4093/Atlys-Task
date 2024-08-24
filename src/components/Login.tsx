@@ -50,7 +50,7 @@ function Login({
       {/* Comment: For gradient border using tailwind given bg color to outer container*/}
       <div className="w-full h-full rounded-[6px] bg-[#27292D] px-[24px] py-[40px] flex flex-col items-center relative">
         {/* Comment: This childer is for closing of modal */}
-        {children}
+        {isModal && children}
         <div className="text-[#6B6C70] text-[14px] font-[500] leading-[16.94px]">
           WELCOME BACK
         </div>
