@@ -40,7 +40,7 @@ const postData: PostData[] = [
 ];
 
 function Home() {
-  const [showModal, setShowModal] = useState<Boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const openModal = () => {
     setShowModal(true);

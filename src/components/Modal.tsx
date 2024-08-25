@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Register from "./Register";
 import Login from "./Login";
 import Cross from "../assets/Cross.svg";
@@ -7,9 +7,15 @@ interface Props {
   setShowModal: (show: boolean) => void;
 }
 
-function ModalCloseButton({ setShowModal }: Props) {
+interface CloseButtonProps {
+  setShowModal: (show: boolean) => void;
+  setTransition: (transition: string) => void;
+}
+
+function ModalCloseButton({ setShowModal, setTransition }: CloseButtonProps) {
   const closeModal = () => {
-    setShowModal(false);
+    setTransition("opacity-0");
+    setTimeout(() => setShowModal(false), 300);
   };
 
   return (
@@ -23,17 +29,28 @@ function ModalCloseButton({ setShowModal }: Props) {
 }
 
 export default function Modal({ setShowModal }: Props) {
+  const [transition, setTransition] = useState<string>("opacity-0");
   const [modalType, setModalType] = useState<string>("register");
 
+  useEffect(() => {
+    const timer = setTimeout(() => setTransition("opacity-100"), 10);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="bg-[#00000050] fixed top-0 left-0 h-screen w-full flex justify-center items-center backdrop-blur-[2.5px]">
+    <div
+      className={`bg-[#00000050] fixed top-0 left-0 h-screen w-full flex justify-center items-center backdrop-blur-[2.5px] transition-opacity duration-300 ease-out ${transition}`}
+    >
       {modalType === "register" && (
         <Register
           isModal={true}
           setModalType={setModalType}
           setShowModal={setShowModal}
         >
-          <ModalCloseButton setShowModal={setShowModal} />
+          <ModalCloseButton
+            setShowModal={setShowModal}
+            setTransition={setTransition}
+          />
         </Register>
       )}
       {modalType === "login" && (
@@ -42,7 +59,10 @@ export default function Modal({ setShowModal }: Props) {
           setModalType={setModalType}
           setShowModal={setShowModal}
         >
-          <ModalCloseButton setShowModal={setShowModal} />
+          <ModalCloseButton
+            setShowModal={setShowModal}
+            setTransition={setTransition}
+          />
         </Login>
       )}
     </div>

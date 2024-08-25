@@ -11,7 +11,7 @@ interface User {
 
 interface Props {
   children?: ReactNode;
-  isModal?: Boolean;
+  isModal?: boolean;
   setModalType?: (modalType: string) => void;
   setShowModal?: (show: boolean) => void;
 }
@@ -22,7 +22,7 @@ export default function Register({
   setModalType,
   setShowModal,
 }: Props) {
-  const [showPassword, setShowPassword] = useState<Boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [user, setUser] = useState<User>({
     email: "",
     username: "",
