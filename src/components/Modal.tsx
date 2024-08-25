@@ -39,8 +39,9 @@ export default function Modal({ setShowModal }: Props) {
 
   return (
     <div
-      className={`bg-[#00000050] fixed top-0 left-0 h-screen w-full flex justify-center items-center backdrop-blur-[2.5px] transition-opacity duration-300 ease-out ${transition}`}
+      className={`bg-[#00000050] fixed top-0 left-0 h-screen w-full flex justify-center items-center backdrop-blur-[2.5px] p-[12px] transition-opacity duration-300 ease-out ${transition}`}
     >
+      {/* Comment: Given padding (12px) for small screen */}
       {modalType === "register" && (
         <Register
           isModal={true}
